@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a reproducible bug or issue in API Service.
+description: Report a reproducible bug or issue in API SDK Nodejs.
 labels: [bug]
 assignees: []
 

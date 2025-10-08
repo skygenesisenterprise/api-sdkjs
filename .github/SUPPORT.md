@@ -1,6 +1,6 @@
 # Support
 
-Thank you for using **API Service** — the official API Service developed and maintained by [Sky Genesis Enterprise](https://skygenesisenterprise.com).
+Thank you for using **API SDK Nodejs** — the official API SDK developed and maintained by [Sky Genesis Enterprise](https://skygenesisenterprise.com).
 
 We’re committed to providing a great experience, and there are several ways you can get support depending on your needs:
 
@@ -17,8 +17,8 @@ If you're using the open-source version of Aether Mail and need help with:
 
 Please use one of the following channels:
 
-- 💬 [GitHub Discussions](https://github.com/skygenesisenterprise/api-service/discussions)
-- 🐞 [GitHub Issues](https://github.com/skygenesisenterprise/api-service/issues) – for bug reports only
+- 💬 [GitHub Discussions](https://github.com/skygenesisenterprise/api-sdkjs/discussions)
+- 🐞 [GitHub Issues](https://github.com/skygenesisenterprise/api-sdkjs/issues) – for bug reports only
 - 📚 [Documentation](https://wiki.skygenesisenterprise.com)
 
 Our community and contributors will do their best to assist.
@@ -27,7 +27,7 @@ Our community and contributors will do their best to assist.
 
 ## 💼 Commercial Support
 
-If you are using Aether Mail in a professional or production environment and require:
+If you are using API SDK in a professional or production environment and require:
 
 - Priority bug fixes
 - Custom integrations
@@ -53,7 +53,7 @@ Instead, report it responsibly to our security team:
 
 ## 🙏 Contributing
 
-Want to help improve for the API Service?  
+Want to help improve for the API SDK Nodejs?  
 Check out our [CONTRIBUTING.md](./CONTRIBUTING.md) guide for how to get started.
 
 Thanks for supporting open-source!

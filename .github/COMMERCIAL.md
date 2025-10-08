@@ -1,19 +1,19 @@
-# Commercial Use of API Service
+# Commercial Use of API SDK Nodejs
 
 API Service is released under the **MIT Licence** [LICENCE](LICENSE)
 
 ## ✅ What You Can Do
 
-- You are free to use, modify, and self-host Company Website for personal or internal use, as long as you comply with the terms of the AGPLv3 license.
+- You are free to use, modify, and self-host API SDK for personal or internal use, as long as you comply with the terms of the AGPLv3 license.
 - You may redistribute modified or unmodified versions of the software, but you must provide access to the source code, including for network-based services (e.g. SaaS).
 
 ## 🚫 What Requires a Commercial License
 
 You **must contact Sky Genesis Enterprise** and obtain a commercial license **if you plan to**:
 
-- Offer Company Website as a paid or free SaaS (Software-as-a-Service) product.
-- Bundle Company Website into a commercial product or platform.
-- Use Company Website in a business context without open-sourcing your modifications and dependencies (as required by AGPLv3).
+- Offer API SDK as a paid or free SaaS (Software-as-a-Service) product.
+- Bundle API SDK into a commercial product or platform.
+- Use API SDK in a business context without open-sourcing your modifications and dependencies (as required by AGPLv3).
 - Require a proprietary license or want to avoid the AGPLv3 copyleft obligations.
 
 ## 🧾 Why a Commercial License?

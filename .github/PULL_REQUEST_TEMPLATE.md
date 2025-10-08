@@ -1,6 +1,6 @@
 # Pull Request
 
-Thank you for contributing to **API Service**!  
+Thank you for contributing to **API SDK Nodejs**!  
 Please fill out the following information to help us review your changes effectively.
 
 ---
