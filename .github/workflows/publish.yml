@@ -47,6 +47,6 @@ jobs:
             Automated release of ${{ github.ref }}
 
             ## Changes
-            See the [changelog](https://github.com/skygenesisenterprise/api-sdk/compare/${{ github.event.before }}...${{ github.ref }}) for details.
+            See the [changelog](https://github.com/skygenesisenterprise/api-sdkjs/compare/${{ github.event.before }}...${{ github.ref }}) for details.
           draft: false
           prerelease: false
