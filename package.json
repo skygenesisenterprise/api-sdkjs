@@ -4,7 +4,7 @@
   "description": "The Official Sky Genesis Enterprise API Service SDK for Node.js Environment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npx jest",
     "build": "echo \"No build step required for this SDK\"",
     "lint": "echo \"No linter configured yet\"",
     "install-deps": "pnpm install",
@@ -12,13 +12,17 @@
     "docs": "echo \"Generate documentation\"",
     "prepublishOnly": "npm run test",
     "publish:dry-run": "npm publish --dry-run",
-    "version:patch": "npm version patch",
-    "version:minor": "npm version minor",
-    "version:major": "npm version major"
+    "prepublish-check": "node scripts/prepublish-check.js",
+    "version:patch": "npm version patch && git push --follow-tags",
+    "version:minor": "npm version minor && git push --follow-tags",
+    "version:major": "npm version major && git push --follow-tags",
+    "release:patch": "npm run version:patch",
+    "release:minor": "npm run version:minor",
+    "release:major": "npm run version:major"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skygenesisenterprise/api-sdkjs.git"
+    "url": "git+https://github.com/skygenesisenterprise/api-sdk.git"
   },
   "keywords": [
     "api",
@@ -45,8 +49,11 @@
   "dependencies": {
     "axios": "^1.6.0"
   },
-  "bugs": {
-    "url": "https://github.com/skygenesisenterprise/api-sdkjs/issues"
+  "devDependencies": {
+    "jest": "^29.7.0"
   },
-  "homepage": "https://github.com/skygenesisenterprise/api-sdkjs#readme"
+  "bugs": {
+    "url": "https://github.com/skygenesisenterprise/api-sdk/issues"
+  },
+  "homepage": "https://github.com/skygenesisenterprise/api-sdk#readme"
 }

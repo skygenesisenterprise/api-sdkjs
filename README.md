@@ -79,11 +79,29 @@ To use the local version in another project:
 
 ```bash
 # In your other project
-npm install /path/to/api-sdkjs
+npm install /path/to/api-sdk
 
 # Or using relative path
-npm install ../api-sdkjs
+npm install ../api-sdk
 ```
+
+### Publishing
+
+The SDK uses automated publishing via GitHub Actions:
+
+1. **Create a version tag:**
+   ```bash
+   npm run release:patch  # 1.0.1 (bug fixes)
+   npm run release:minor  # 1.1.0 (new features)
+   npm run release:major  # 2.0.0 (breaking changes)
+   ```
+
+2. **GitHub Actions automatically:**
+   - Runs tests and linting
+   - Publishes to npm
+   - Creates a GitHub release
+
+**Requirements:** Configure `NPM_TOKEN` in repository secrets.
 
 ---
 
