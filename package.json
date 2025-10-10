@@ -1,6 +1,6 @@
 {
   "name": "@skygenesisenterprise/api-sdk",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The Official Sky Genesis Enterprise API Service SDK for Node.js Environment",
   "main": "index.js",
   "scripts": {
@@ -20,7 +20,15 @@
     "type": "git",
     "url": "git+https://github.com/skygenesisenterprise/api-sdkjs.git"
   },
-  "keywords": ["api", "sdk", "skygenesis", "enterprise", "nodejs", "stripe-like", "backend"],
+  "keywords": [
+    "api",
+    "sdk",
+    "skygenesis",
+    "enterprise",
+    "nodejs",
+    "stripe-like",
+    "backend"
+  ],
   "author": "Sky Genesis Enterprise",
   "engines": {
     "node": ">=14.0.0"
