@@ -1,0 +1,35 @@
+# Development files
+.github/
+.husky/
+.devcontainer/
+.storybook/
+Makefile
+test-import.js
+
+# Dependencies
+node_modules/
+pnpm-lock.yaml
+
+# Documentation (keep README and LICENSE)
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+SECURITY.md
+COMMERCIAL.md
+FUNDING.yml
+
+# Examples (optional - can be useful for users)
+# examples/
+
+# Source maps and build artifacts
+*.map
+*.log
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db

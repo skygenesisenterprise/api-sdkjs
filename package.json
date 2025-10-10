@@ -1,21 +1,44 @@
 {
-  "name": "api-sdkjs",
+  "name": "@skygenesisenterprise/api-sdk",
   "version": "1.0.0",
-  "description": "The Official Sky Genesis Enterprise API Service SDK for Nodejs Environment",
+  "description": "The Official Sky Genesis Enterprise API Service SDK for Node.js Environment",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "echo \"No build step required for this SDK\"",
+    "lint": "echo \"No linter configured yet\"",
+    "install-deps": "pnpm install",
+    "example": "node examples/basic-usage.js",
+    "docs": "echo \"Generate documentation\"",
+    "prepublishOnly": "npm run test",
+    "publish:dry-run": "npm publish --dry-run",
+    "version:patch": "npm version patch",
+    "version:minor": "npm version minor",
+    "version:major": "npm version major"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skygenesisenterprise/api-sdkjs.git"
+    "url": "git+https://github.com/skygenesisenterprise/api-sdk.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["api", "sdk", "skygenesis", "enterprise", "nodejs", "stripe-like", "backend"],
+  "author": "Sky Genesis Enterprise",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "examples/",
+    "README.md",
+    "LICENSE"
+  ],
   "license": "ISC",
   "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/skygenesisenterprise/api-sdkjs/issues"
+  "dependencies": {
+    "axios": "^1.6.0"
   },
-  "homepage": "https://github.com/skygenesisenterprise/api-sdkjs#readme"
+  "bugs": {
+    "url": "https://github.com/skygenesisenterprise/api-sdk/issues"
+  },
+  "homepage": "https://github.com/skygenesisenterprise/api-sdk#readme"
 }

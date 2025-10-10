@@ -1,7 +1,7 @@
 
-# Sky Genesis Enterprise API SDK
+# Sky Genesis Enterprise API SDK for Node.js
 
-The **Sky Genesis Enterprise API SDK** provides a unified, developer-friendly interface to interact with all Sky Genesis Enterprise services, including domains, DNS, mail, data, and more. This SDK acts as a central client that manages authentication, requests, logging, and configuration while exposing all core modules in a single import.
+The **Sky Genesis Enterprise API SDK** provides a developer-friendly interface to interact with the Sky Genesis Enterprise API, inspired by Stripe's SDK design. Simply provide your API key and start using the API with automatic authentication and request handling.
 
 ---
 
@@ -10,6 +10,8 @@ The **Sky Genesis Enterprise API SDK** provides a unified, developer-friendly in
 ```bash
 npm install @skygenesisenterprise/api-sdk
 # or
+pnpm add @skygenesisenterprise/api-sdk
+# or
 yarn add @skygenesisenterprise/api-sdk
 ```
 
@@ -17,61 +19,213 @@ yarn add @skygenesisenterprise/api-sdk
 
 ## ⚡ Quick Start
 
-```ts
-import { SGEClient, DNS, Mail, Domain } from "@skygenesisenterprise/api-sdk";
+```javascript
+const skygenesis = require('@skygenesisenterprise/api-sdk')('sk-your-api-key-here');
 
-// Initialize the central client
-const client = new SGEClient({ apiKey: process.env.SGE_TOKEN });
+// Create a user
+const user = await skygenesis.users.create({
+  email: 'user@example.com',
+  name: 'John Doe'
+});
 
-// Instantiate modules
-const dns = new DNS(client);
-const mail = new Mail(client);
-const domain = new Domain(client);
+// Create a project
+const project = await skygenesis.projects.create({
+  name: 'My Awesome Project',
+  description: 'A project description'
+});
 
-// Example usage
-await domain.register("example.com");
-await dns.addRecord("example.com", { type: "A", value: "192.168.1.1" });
-await mail.createMailbox("contact@example.com");
+// List all projects
+const projects = await skygenesis.projects.list();
 ```
 
 ---
 
-## 🧩 Modules
+## 🧩 Resources
 
-* **SGEClient** – Core client for managing authentication, requests, and configuration.
-* **DNS** – Add, remove, and manage DNS records for your domains.
-* **Domain** – Register, transfer, or manage domains.
-* **Mail** – Create and manage mailboxes within your domains.
+The SDK provides access to different API resources through organized methods:
 
-> More modules can be added in the future, all integrated through the central SDK.
+* **auth** – Authentication operations (login, logout, token refresh)
+* **users** – User management (CRUD operations)
+* **projects** – Project management (CRUD operations)
 
 ---
 
 ## 🔑 Authentication
 
-All requests require a valid API key. The `SGEClient` handles token usage automatically, ensuring that all modules share the same authentication context.
+Just like Stripe, you only need to provide your API key when initializing the SDK:
 
-```ts
-const client = new SGEClient({ apiKey: process.env.SGE_TOKEN });
+```javascript
+const skygenesis = require('@skygenesisenterprise/api-sdk')('sk-your-api-key-here');
+```
+
+The SDK automatically handles authentication headers for all requests.
+
+### Local Development
+
+During development, you can test the SDK locally before publishing:
+
+```bash
+# Install dependencies
+pnpm install
+
+# Run the example
+pnpm run example
+
+# Or run with your API key
+node examples/basic-usage.js sk-your-api-key-here
+```
+
+To use the local version in another project:
+
+```bash
+# In your other project
+npm install /path/to/api-sdkjs
+
+# Or using relative path
+npm install ../api-sdkjs
 ```
 
 ---
 
 ## 📚 Features
 
-* Unified SDK for multiple services
-* Modular architecture with a single import
-* Centralized authentication and request handling
-* TypeScript support and autocompletion
-* Extendable with specialized modules
+* **Stripe-inspired API**: Familiar interface for developers
+* **Automatic Authentication**: API key handling built-in
+* **Smart Error Handling**: Custom error classes with detailed information
+* **TypeScript Support**: JSDoc types for better IDE experience
+* **Retry Logic**: Automatic network retry for failed requests
+* **Timeout Management**: Configurable request timeouts
 
 ---
 
-## 🛠 Usage Tips
+## 🛠 Usage Examples
 
-* Always instantiate modules with the **central client**.
-* Avoid using modules independently outside the SDK — the client ensures secure, consistent API requests.
-* Check the module documentation for advanced usage and options.
+### Authentication
+```javascript
+const skygenesis = require('@skygenesisenterprise/api-sdk')('sk-your-api-key-here');
+
+// Login with credentials
+try {
+  const authResponse = await skygenesis.auth.login({
+    email: 'admin@example.com',
+    password: 'securepassword'
+  });
+  console.log('Logged in:', authResponse.user);
+} catch (error) {
+  console.error('Login failed:', error.message);
+}
+```
+
+### User Management
+```javascript
+// Create a new user
+const newUser = await skygenesis.users.create({
+  email: 'newuser@example.com',
+  name: 'New User',
+  role: 'member'
+});
+
+// Retrieve a user
+const user = await skygenesis.users.retrieve('user_123456');
+
+// Update user information
+const updatedUser = await skygenesis.users.update('user_123456', {
+  name: 'Updated Name',
+  email: 'updated@example.com'
+});
+
+// List users with pagination
+const users = await skygenesis.users.list({
+  limit: 20,
+  offset: 0
+});
+
+// Delete a user
+await skygenesis.users.delete('user_123456');
+```
+
+### Project Management
+```javascript
+// Create a project
+const project = await skygenesis.projects.create({
+  name: 'E-commerce Platform',
+  description: 'A modern e-commerce solution',
+  status: 'active'
+});
+
+// Retrieve a specific project
+const projectDetails = await skygenesis.projects.retrieve('proj_123456');
+
+// Update project
+const updatedProject = await skygenesis.projects.update('proj_123456', {
+  name: 'Updated Project Name',
+  status: 'completed'
+});
+
+// List projects with filters
+const activeProjects = await skygenesis.projects.list({
+  status: 'active',
+  limit: 10
+});
+
+// Delete a project
+await skygenesis.projects.delete('proj_123456');
+```
+
+### Error Handling
+```javascript
+try {
+  const user = await skygenesis.users.retrieve('invalid_id');
+} catch (error) {
+  if (error instanceof skygenesis.AuthenticationError) {
+    console.log('Authentication failed');
+  } else if (error instanceof skygenesis.ValidationError) {
+    console.log('Invalid request:', error.param);
+  } else if (error instanceof skygenesis.APIError) {
+    console.log('API error:', error.statusCode, error.message);
+  }
+}
+```
+
+### Advanced Configuration
+```javascript
+const skygenesis = require('api-sdkjs')('sk-your-api-key-here', {
+  baseURL: 'https://api.staging.skygenesisenterprise.com',
+  timeout: 60000,
+  maxNetworkRetries: 3
+});
+
+// Change API key dynamically
+skygenesis.setApiKey('sk-new-api-key-here');
+
+// Adjust timeout
+skygenesis.setTimeout(45000);
+```
+
+---
+
+## 🚀 Advanced Usage
+
+### Using the Class Directly
+```javascript
+const { SkyGenesis } = require('api-sdkjs');
+
+const sdk = new SkyGenesis('sk-your-api-key-here', {
+  timeout: 30000
+});
+
+// Access resources
+const users = await sdk.users.list();
+```
+
+### Environment Variables
+```javascript
+// .env file
+SKYGENESIS_API_KEY=sk-your-api-key-here
+
+// In your code
+const skygenesis = require('api-sdkjs')(process.env.SKYGENESIS_API_KEY);
+```
 
 ---
 
@@ -86,6 +240,33 @@ We welcome contributions! To contribute:
 
 ---
 
+## 📦 Publishing
+
+This package is published to npm under the scoped name `@skygenesisenterprise/api-sdk`.
+
+### For Maintainers
+
+To publish a new version:
+
+```bash
+# Update version (patch, minor, or major)
+npm run version:patch  # or version:minor or version:major
+
+# Publish to npm
+npm publish
+
+# Or dry-run first
+npm run publish:dry-run
+```
+
+### Version Management
+
+- **Patch** (`1.0.1`): Bug fixes and small improvements
+- **Minor** (`1.1.0`): New features, backward compatible
+- **Major** (`2.0.0`): Breaking changes
+
+---
+
 ## 📄 License
 
-[MIT License](LICENSE)
+[ISC License](LICENSE)
