@@ -22,7 +22,10 @@ const checks = [
       if (!pkg.version) {
         throw new Error('Version is required');
       }
-      console.log(`✅ Package: ${pkg.name}@${pkg.version}`);
+      if (pkg.private !== false) {
+        throw new Error('Package should be explicitly public (private: false)');
+      }
+      console.log(`✅ Package: ${pkg.name}@${pkg.version} (public)`);
     }
   },
   {
@@ -54,6 +57,25 @@ const checks = [
         throw new Error('Repository URL should point to skygenesisenterprise/api-sdk');
       }
       console.log(`✅ Repository: ${pkg.repository.url}`);
+    }
+  },
+  {
+    name: 'Publish workflow check',
+    check: () => {
+      const fs = require('fs');
+      const path = require('path');
+      const workflowPath = path.join(__dirname, '..', '.github', 'workflows', 'publish.yml');
+
+      if (!fs.existsSync(workflowPath)) {
+        throw new Error('Publish workflow not found');
+      }
+
+      const workflow = fs.readFileSync(workflowPath, 'utf8');
+      if (!workflow.includes('--access public')) {
+        throw new Error('Workflow should use --access public for scoped packages');
+      }
+
+      console.log('✅ Publish workflow configured for public access');
     }
   },
   {

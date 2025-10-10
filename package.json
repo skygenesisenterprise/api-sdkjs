@@ -11,7 +11,7 @@
     "example": "node examples/basic-usage.js",
     "docs": "echo \"Generate documentation\"",
     "prepublishOnly": "npm run test",
-    "publish:dry-run": "npm publish --dry-run",
+    "publish:dry-run": "npm publish --dry-run --access public",
     "prepublish-check": "node scripts/prepublish-check.js",
     "version:patch": "npm version patch && git push --follow-tags",
     "version:minor": "npm version minor && git push --follow-tags",
@@ -45,6 +45,7 @@
     "LICENSE"
   ],
   "license": "ISC",
+  "private": false,
   "type": "commonjs",
   "dependencies": {
     "axios": "^1.6.0"
