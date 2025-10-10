@@ -101,7 +101,25 @@ The SDK uses automated publishing via GitHub Actions:
    - Publishes to npm
    - Creates a GitHub release
 
-**Requirements:** Configure `NPM_TOKEN` in repository secrets.
+**Requirements:**
+- Configure `NPM_TOKEN` in repository secrets
+- Token must have `Automation` or `Publish` permissions
+- See [TROUBLESHOOTING.md](TROUBLESHOOTING.md) for common issues
+
+### Testing Locally
+
+Before pushing to GitHub, test your npm configuration:
+
+```bash
+# Test npm login and permissions
+npm run test-npm-config
+
+# Test package structure
+npm run prepublish-check
+
+# Test publish (dry-run)
+npm run publish:dry-run
+```
 
 ---
 

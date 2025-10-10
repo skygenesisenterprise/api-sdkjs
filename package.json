@@ -13,6 +13,7 @@
     "prepublishOnly": "npm run test",
     "publish:dry-run": "npm publish --dry-run --access public",
     "prepublish-check": "node scripts/prepublish-check.js",
+    "test-npm-config": "node scripts/test-npm-config.js",
     "version:patch": "npm version patch && git push --follow-tags",
     "version:minor": "npm version minor && git push --follow-tags",
     "version:major": "npm version major && git push --follow-tags",
@@ -51,7 +52,7 @@
     "axios": "^1.6.0"
   },
   "devDependencies": {
-    "jest": "^29.7.0"
+    "jest": "30.2.0"
   },
   "bugs": {
     "url": "https://github.com/skygenesisenterprise/api-sdkjs/issues"
